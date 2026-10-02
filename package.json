@@ -1,0 +1,556 @@
+{
+  "name": "easycoderunner",
+  "displayName": "EasyCodeRunner",
+  "version": "0.4.1",
+  "description": "Compile and run source files in your preferred external terminal on Windows, Linux, BSD and macOS.",
+  "publisher": "spandanhldr",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spandanhldr/easycoderunner.git"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false
+    },
+    "virtualWorkspaces": false
+  },
+  "scripts": {
+    "test": "node --test",
+    "package": "vsce package --skip-license"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "easycoderunner.run",
+        "title": "Run Active File",
+        "category": "EasyCodeRunner",
+        "icon": "$(play)",
+        "enablement": "isWorkspaceTrusted && resourceScheme == file"
+      },
+      {
+        "command": "easycoderunner.changeShortcut",
+        "title": "Change Keyboard Shortcut",
+        "category": "EasyCodeRunner"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "easycoderunner.run",
+        "key": "f2",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f2"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f4",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f4"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f6",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f6"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f8",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f8"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f9",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f9"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f10",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f10"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f11",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f11"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "f12",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == f12"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "ctrl+shift+r",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "ctrl+enter",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == ctrl+enter",
+        "mac": "cmd+enter"
+      },
+      {
+        "command": "easycoderunner.run",
+        "key": "ctrl+shift+enter",
+        "when": "editorTextFocus && isWorkspaceTrusted && resourceScheme == file && config.easycoderunner.runKey == ctrl+shift+enter",
+        "mac": "cmd+shift+enter"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "easycoderunner.run",
+          "when": "isWorkspaceTrusted && resourceScheme == file",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "EasyCodeRunner",
+        "properties": {
+          "easycoderunner.pauseAfterRun": {
+            "type": "boolean",
+            "default": true,
+            "description": "Keep the external console open after success or failure. Windows waits for a key; other systems wait for Enter.",
+            "order": 1
+          },
+          "easycoderunner.runKey": {
+            "type": "string",
+            "enum": [
+              "f2",
+              "f4",
+              "f6",
+              "f8",
+              "f9",
+              "f10",
+              "f11",
+              "f12",
+              "ctrl+shift+r",
+              "ctrl+enter",
+              "ctrl+shift+enter",
+              "custom"
+            ],
+            "enumItemLabels": [
+              "F2",
+              "F4",
+              "F6",
+              "F8",
+              "F9",
+              "F10",
+              "F11",
+              "F12",
+              "Ctrl+Shift+R (Cmd+Shift+R on macOS)",
+              "Ctrl+Enter (Cmd+Enter on macOS)",
+              "Ctrl+Shift+Enter (Cmd+Shift+Enter on macOS)",
+              "Custom shortcut\u2026"
+            ],
+            "default": "f12",
+            "scope": "application",
+            "order": 0,
+            "markdownDescription": "Keyboard shortcut for Run Active File. Choose a preset to apply it immediately. Choose **custom** to open VS Code\u2019s Keyboard Shortcuts editor and record another key. You can also run **EasyCodeRunner: Change Keyboard Shortcut** from the Command Palette. A shortcut can override another editor command. If you previously set an EasyCodeRunner user binding, remove it in Keyboard Shortcuts to use these presets."
+          },
+          "easycoderunner.executors": {
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "executable"
+              ],
+              "properties": {
+                "executable": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "args": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "compile": {
+                  "type": "object",
+                  "required": [
+                    "executable"
+                  ],
+                  "properties": {
+                    "executable": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "args": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "scope": "machine-overridable",
+            "markdownDescription": "Advanced structured executor overrides. Prefer Programming Language and Run Config in the Executors section for editing commands. Used when that language has no Run Config override. Each value has executable, args, and optional compile.",
+            "order": 2
+          }
+        }
+      },
+      {
+        "title": "EasyCodeRunner: Executors",
+        "order": 1,
+        "properties": {
+          "easycoderunner.programmingLanguage": {
+            "type": "string",
+            "enum": [
+              "javascript",
+              "javascriptreact",
+              "c",
+              "cpp",
+              "java",
+              "python",
+              "php",
+              "perl",
+              "perl6",
+              "ruby",
+              "go",
+              "lua",
+              "groovy",
+              "powershell",
+              "bat",
+              "shellscript",
+              "fsharp",
+              "csharp",
+              "fsharp-project",
+              "csharp-project",
+              "vbscript",
+              "vb",
+              "typescript",
+              "typescriptreact",
+              "coffeescript",
+              "scala",
+              "swift",
+              "julia",
+              "crystal",
+              "ocaml",
+              "r",
+              "applescript",
+              "elixir",
+              "clojure",
+              "haxe",
+              "objective-c",
+              "rust",
+              "racket",
+              "scheme",
+              "ahk",
+              "autoit",
+              "kotlin",
+              "kotlin-script",
+              "dart",
+              "pascal",
+              "haskell",
+              "nim",
+              "d",
+              "lisp",
+              "kit",
+              "v",
+              "scss",
+              "sass",
+              "cuda-cpp",
+              "less",
+              "fortran",
+              "ring",
+              "sml",
+              "zig",
+              "mojo",
+              "erlang",
+              "spwn",
+              "pkl",
+              "gleam"
+            ],
+            "enumItemLabels": [
+              "JavaScript",
+              "JavaScript React",
+              "C",
+              "C++",
+              "Java",
+              "Python",
+              "PHP",
+              "Perl",
+              "Raku / Perl 6",
+              "Ruby",
+              "Go",
+              "Lua",
+              "Groovy",
+              "PowerShell",
+              "Batch / CMD",
+              "Bash / Shell",
+              "F# Script",
+              "C# Script",
+              "F# (.NET project)",
+              "C# (.NET project)",
+              "VBScript",
+              "Visual Basic .NET",
+              "TypeScript",
+              "TypeScript React",
+              "CoffeeScript",
+              "Scala",
+              "Swift",
+              "Julia",
+              "Crystal",
+              "OCaml Script",
+              "R",
+              "AppleScript",
+              "Elixir",
+              "Clojure",
+              "Haxe",
+              "Objective-C",
+              "Rust",
+              "Racket",
+              "Scheme",
+              "AutoHotkey",
+              "AutoIt",
+              "Kotlin",
+              "Kotlin Script",
+              "Dart",
+              "Free Pascal",
+              "Haskell",
+              "Nim",
+              "D",
+              "Common Lisp",
+              "Kit",
+              "V",
+              "SCSS",
+              "Sass",
+              "CUDA",
+              "Less",
+              "Fortran",
+              "Ring",
+              "Standard ML",
+              "Zig",
+              "Mojo",
+              "Erlang escript",
+              "SPWN",
+              "Pkl",
+              "Gleam"
+            ],
+            "default": "c",
+            "scope": "machine",
+            "order": 1,
+            "description": "Language whose Run Config you want to edit. Selecting a language loads its saved command below. This selection edits configuration; execution still follows the active file language."
+          },
+          "easycoderunner.runConfig": {
+            "type": "string",
+            "default": "",
+            "scope": "machine",
+            "order": 2,
+            "markdownDescription": "Command for the selected Programming Language. Changes save separately for each language. Example: `g++ {filename} -o {binary} && {binary}`. Use `&&` to compile then run. `{filename}` is the full source path and is quoted automatically. Other placeholders: `{directory}`, `{stem}`, `{binary}`, `{jar}`, `{css}`, `{yaml}`. Clear the field to restore the built-in runner. Use double quotes around an executable path containing spaces. Overrides here take priority over advanced Executors."
+          }
+        }
+      },
+      {
+        "title": "EasyCodeRunner: Windows",
+        "properties": {
+          "easycoderunner.windows.terminal": {
+            "type": "string",
+            "enum": [
+              "powershell",
+              "cmd",
+              "windows-terminal",
+              "pwsh",
+              "custom"
+            ],
+            "enumItemLabels": [
+              "Windows PowerShell",
+              "Command Prompt",
+              "Windows Terminal",
+              "PowerShell 7 (pwsh)",
+              "Custom terminal"
+            ],
+            "default": "powershell",
+            "description": "External terminal application to use on windows. The chosen application must be installed.",
+            "scope": "machine",
+            "order": 1
+          },
+          "easycoderunner.windows.customPath": {
+            "type": "string",
+            "default": "",
+            "description": "Executable path or command name when Terminal is set to custom.",
+            "scope": "machine",
+            "order": 2
+          },
+          "easycoderunner.windows.customArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Arguments for the custom terminal. Include `{script}` (generated script path) or `{command}` (command to execute). `{cwd}` is the source directory. Windows also supports `{encodedScript}` for PowerShell. Example on Unix: `[\"-e\", \"/bin/sh\", \"{script}\"]`. Example for a Windows Terminal compatible app: `[\"powershell.exe\", \"-NoProfile\", \"-EncodedCommand\", \"{encodedScript}\"]`. Each array item is one argument; do not add shell quotes around placeholders.",
+            "scope": "machine",
+            "order": 3
+          }
+        }
+      },
+      {
+        "title": "EasyCodeRunner: Linux",
+        "properties": {
+          "easycoderunner.linux.terminal": {
+            "type": "string",
+            "enum": [
+              "xterm",
+              "gnome-terminal",
+              "konsole",
+              "xfce4-terminal",
+              "kitty",
+              "alacritty",
+              "custom"
+            ],
+            "enumItemLabels": [
+              "XTerm",
+              "GNOME Terminal",
+              "Konsole",
+              "Xfce Terminal",
+              "Kitty",
+              "Alacritty",
+              "Custom terminal"
+            ],
+            "default": "xterm",
+            "description": "External terminal application to use on linux. The chosen application must be installed.",
+            "scope": "machine",
+            "order": 1
+          },
+          "easycoderunner.linux.customPath": {
+            "type": "string",
+            "default": "",
+            "description": "Executable path or command name when Terminal is set to custom.",
+            "scope": "machine",
+            "order": 2
+          },
+          "easycoderunner.linux.customArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Arguments for the custom terminal. Include `{script}` (generated script path) or `{command}` (command to execute). `{cwd}` is the source directory. Windows also supports `{encodedScript}` for PowerShell. Example on Unix: `[\"-e\", \"/bin/sh\", \"{script}\"]`. Example for a Windows Terminal compatible app: `[\"powershell.exe\", \"-NoProfile\", \"-EncodedCommand\", \"{encodedScript}\"]`. Each array item is one argument; do not add shell quotes around placeholders.",
+            "scope": "machine",
+            "order": 3
+          }
+        }
+      },
+      {
+        "title": "EasyCodeRunner: BSD",
+        "properties": {
+          "easycoderunner.bsd.terminal": {
+            "type": "string",
+            "enum": [
+              "xterm",
+              "konsole",
+              "xfce4-terminal",
+              "kitty",
+              "alacritty",
+              "custom"
+            ],
+            "enumItemLabels": [
+              "XTerm",
+              "Konsole",
+              "Xfce Terminal",
+              "Kitty",
+              "Alacritty",
+              "Custom terminal"
+            ],
+            "default": "xterm",
+            "description": "External terminal application to use on bsd. The chosen application must be installed.",
+            "scope": "machine",
+            "order": 1
+          },
+          "easycoderunner.bsd.customPath": {
+            "type": "string",
+            "default": "",
+            "description": "Executable path or command name when Terminal is set to custom.",
+            "scope": "machine",
+            "order": 2
+          },
+          "easycoderunner.bsd.customArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Arguments for the custom terminal. Include `{script}` (generated script path) or `{command}` (command to execute). `{cwd}` is the source directory. Windows also supports `{encodedScript}` for PowerShell. Example on Unix: `[\"-e\", \"/bin/sh\", \"{script}\"]`. Example for a Windows Terminal compatible app: `[\"powershell.exe\", \"-NoProfile\", \"-EncodedCommand\", \"{encodedScript}\"]`. Each array item is one argument; do not add shell quotes around placeholders.",
+            "scope": "machine",
+            "order": 3
+          }
+        }
+      },
+      {
+        "title": "EasyCodeRunner: macOS",
+        "properties": {
+          "easycoderunner.macos.terminal": {
+            "type": "string",
+            "enum": [
+              "terminal",
+              "iterm2",
+              "custom"
+            ],
+            "enumItemLabels": [
+              "Apple Terminal",
+              "iTerm2",
+              "Custom terminal"
+            ],
+            "default": "terminal",
+            "description": "External terminal application to use on macos. The chosen application must be installed.",
+            "scope": "machine",
+            "order": 1
+          },
+          "easycoderunner.macos.customPath": {
+            "type": "string",
+            "default": "",
+            "description": "Executable path or command name when Terminal is set to custom.",
+            "scope": "machine",
+            "order": 2
+          },
+          "easycoderunner.macos.customArgs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "Arguments for the custom terminal. Include `{script}` (generated script path) or `{command}` (command to execute). `{cwd}` is the source directory. Windows also supports `{encodedScript}` for PowerShell. Example on Unix: `[\"-e\", \"/bin/sh\", \"{script}\"]`. Example for a Windows Terminal compatible app: `[\"powershell.exe\", \"-NoProfile\", \"-EncodedCommand\", \"{encodedScript}\"]`. Each array item is one argument; do not add shell quotes around placeholders.",
+            "scope": "machine",
+            "order": 3
+          }
+        }
+      }
+    ]
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#0b1522",
+    "theme": "dark"
+  },
+  "keywords": [
+    "code runner",
+    "external terminal",
+    "compile",
+    "run code",
+    "c++",
+    "python",
+    "executors"
+  ],
+  "homepage": "https://github.com/spandanhldr/easycoderunner#readme",
+  "bugs": {
+    "url": "https://github.com/spandanhldr/easycoderunner/issues"
+  }
+}

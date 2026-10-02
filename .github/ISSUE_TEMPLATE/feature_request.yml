@@ -1,0 +1,17 @@
+name: Feature request
+description: Suggest a runner, terminal adapter, or workflow improvement.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: What would this help you do?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: For a language or terminal, include the OS and command-line documentation.
+    validations:
+      required: true

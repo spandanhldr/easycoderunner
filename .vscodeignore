@@ -1,0 +1,14 @@
+.git/**
+.vscode/**
+test/**
+node_modules/**
+*.vsix
+package-lock.json
+start.bat
+launcher.py
+compile.cmd
+launch.cmd
+
+.github/**
+CONTRIBUTING.md
+releases/**
