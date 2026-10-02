@@ -1,6 +1,6 @@
 {
   "name": "easycoderunner",
-  "displayName": "Easy Code Runner",
+  "displayName": "Easy Code Runner — External Terminal",
   "version": "0.4.2",
   "description": "Compile and run source files in your preferred external terminal on Windows, Linux, BSD and macOS.",
   "publisher": "spandanhldr",

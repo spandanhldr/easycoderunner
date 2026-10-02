@@ -1,4 +1,4 @@
-# Easy Code Runner
+# Easy Code Runner — External Terminal
 
 ![Easy Code Runner — your code, your terminal, one shortcut](resources/banner.png)
 
