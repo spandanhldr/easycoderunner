@@ -1,6 +1,6 @@
 # Supported languages
 
-[Back to EasyCodeRunner](../README.md)
+[Back to Easy Code Runner](../README.md)
 
 ## Language support and requirements
 

@@ -11,7 +11,7 @@ function activate(context) {
     read: key => vscode.workspace.getConfiguration('easycoderunner').get(key),
     write: text => vscode.workspace.getConfiguration('easycoderunner').update('runConfig', text, vscode.ConfigurationTarget.Global),
     persist: state => context.globalState.update(profileKey, state),
-    report: message => vscode.window.showErrorMessage('EasyCodeRunner: '+message)
+    report: message => vscode.window.showErrorMessage('Easy Code Runner: '+message)
   });
   const openShortcutEditor = () => vscode.commands.executeCommand('workbench.action.openGlobalKeybindings', '@command:easycoderunner.run');
   context.subscriptions.push(vscode.commands.registerCommand('easycoderunner.changeShortcut', openShortcutEditor));
@@ -20,7 +20,7 @@ function activate(context) {
       editorSettings.onChange(event.affectsConfiguration('easycoderunner.programmingLanguage'),event.affectsConfiguration('easycoderunner.runConfig'));
     }
     if (event.affectsConfiguration('easycoderunner.runKey') && vscode.workspace.getConfiguration('easycoderunner').get('runKey') === 'custom') {
-      openShortcutEditor().then(undefined, error => vscode.window.showErrorMessage('EasyCodeRunner: ' + error.message));
+      openShortcutEditor().then(undefined, error => vscode.window.showErrorMessage('Easy Code Runner: ' + error.message));
     }
   }));
   context.subscriptions.push(vscode.commands.registerCommand('easycoderunner.run', async () => {
@@ -47,9 +47,9 @@ function activate(context) {
       if (!(await document.save())) throw new Error('The source file could not be saved.');
       await launchExternalConsole(document.uri.fsPath, script, settings, context.globalStorageUri.fsPath);
     } catch (error) {
-      vscode.window.showErrorMessage('EasyCodeRunner: ' + error.message);
+      vscode.window.showErrorMessage('Easy Code Runner: ' + error.message);
     }
   }));
-  editorSettings.queue=editorSettings.initialize().catch(error=>vscode.window.showErrorMessage('EasyCodeRunner: '+error.message));
+  editorSettings.queue=editorSettings.initialize().catch(error=>vscode.window.showErrorMessage('Easy Code Runner: '+error.message));
 }
 module.exports = { activate };

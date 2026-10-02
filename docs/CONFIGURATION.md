@@ -1,12 +1,12 @@
 # Configuration guide
 
-[Back to EasyCodeRunner](../README.md)
+[Back to Easy Code Runner](../README.md)
 
 ## Install and settings
 
 In VS Code's Extensions view, choose **... > Install from VSIX...** and install `easycoderunner-0.4.0.vsix`. Reload VS Code if prompted.
 
-Open Settings with **Ctrl+,** (Cmd+, on macOS) and search **EasyCodeRunner** or `@ext:spandanhldr.easycoderunner`. Choose the terminal dropdown for your operating system:
+Open Settings with **Ctrl+,** (Cmd+, on macOS) and search **Easy Code Runner** or `@ext:spandanhldr.easycoderunner`. Choose the terminal dropdown for your operating system:
 
 | OS | Terminal choices |
 | --- | --- |
@@ -41,15 +41,15 @@ On macOS, Terminal and iTerm2 use AppleScript; macOS may ask permission for VS C
 
 ## Shortcut
 
-In Settings search **EasyCodeRunner** and change **Run Key**. Presets apply immediately; F12 is the default. Ctrl presets use Cmd on macOS. The selected key overrides other editor commands when a saved editor has focus.
+In Settings search **Easy Code Runner** and change **Run Key**. Presets apply immediately; F12 is the default. Ctrl presets use Cmd on macOS. The selected key overrides other editor commands when a saved editor has focus.
 
-For any other combination choose **custom**. VS Code opens Keyboard Shortcuts filtered to Run Active File; click the pencil or plus icon to record your combination. You can reopen it with **EasyCodeRunner: Change Keyboard Shortcut** from the Command Palette. Custom bindings are stored in VS Code's normal keyboard shortcuts.
+For any other combination choose **custom**. VS Code opens Keyboard Shortcuts filtered to Run Active File; click the pencil or plus icon to record your combination. You can reopen it with **Easy Code Runner: Change Keyboard Shortcut** from the Command Palette. Custom bindings are stored in VS Code's normal keyboard shortcuts.
 
-When switching back to a preset, remove any manually assigned EasyCodeRunner shortcut in Keyboard Shortcuts because user bindings take priority over extension defaults.
+When switching back to a preset, remove any manually assigned Easy Code Runner shortcut in Keyboard Shortcuts because user bindings take priority over extension defaults.
 
 ## Edit a language's run command
 
-In Settings search **EasyCodeRunner** and open the **Executors** category:
+In Settings search **Easy Code Runner** and open the **Executors** category:
 
 - **Programming Language:** choose C, C++, Python or another language in the dropdown.
 - **Run Config:** edit the command shown directly below it.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- Rename the extension to Easy Code Runner.
+- Add GitHub Actions tests, VSIX builds, and tag-based releases with optional Marketplace trusted publishing.
+
 ## 0.4.1
 
 - Added a branded README, extension icon, and Marketplace banner metadata.

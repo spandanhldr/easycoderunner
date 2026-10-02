@@ -1,7 +1,7 @@
 {
   "name": "easycoderunner",
-  "displayName": "EasyCodeRunner",
-  "version": "0.4.1",
+  "displayName": "Easy Code Runner",
+  "version": "0.4.2",
   "description": "Compile and run source files in your preferred external terminal on Windows, Linux, BSD and macOS.",
   "publisher": "spandanhldr",
   "engines": {
@@ -33,14 +33,14 @@
       {
         "command": "easycoderunner.run",
         "title": "Run Active File",
-        "category": "EasyCodeRunner",
+        "category": "Easy Code Runner",
         "icon": "$(play)",
         "enablement": "isWorkspaceTrusted && resourceScheme == file"
       },
       {
         "command": "easycoderunner.changeShortcut",
         "title": "Change Keyboard Shortcut",
-        "category": "EasyCodeRunner"
+        "category": "Easy Code Runner"
       }
     ],
     "keybindings": [
@@ -114,7 +114,7 @@
     },
     "configuration": [
       {
-        "title": "EasyCodeRunner",
+        "title": "Easy Code Runner",
         "properties": {
           "easycoderunner.pauseAfterRun": {
             "type": "boolean",
@@ -155,7 +155,7 @@
             "default": "f12",
             "scope": "application",
             "order": 0,
-            "markdownDescription": "Keyboard shortcut for Run Active File. Choose a preset to apply it immediately. Choose **custom** to open VS Code\u2019s Keyboard Shortcuts editor and record another key. You can also run **EasyCodeRunner: Change Keyboard Shortcut** from the Command Palette. A shortcut can override another editor command. If you previously set an EasyCodeRunner user binding, remove it in Keyboard Shortcuts to use these presets."
+            "markdownDescription": "Keyboard shortcut for Run Active File. Choose a preset to apply it immediately. Choose **custom** to open VS Code\u2019s Keyboard Shortcuts editor and record another key. You can also run **Easy Code Runner: Change Keyboard Shortcut** from the Command Palette. A shortcut can override another editor command. If you previously set an Easy Code Runner user binding, remove it in Keyboard Shortcuts to use these presets."
           },
           "easycoderunner.executors": {
             "type": "object",
@@ -205,7 +205,7 @@
         }
       },
       {
-        "title": "EasyCodeRunner: Executors",
+        "title": "Easy Code Runner: Executors",
         "order": 1,
         "properties": {
           "easycoderunner.programmingLanguage": {
@@ -357,7 +357,7 @@
         }
       },
       {
-        "title": "EasyCodeRunner: Windows",
+        "title": "Easy Code Runner: Windows",
         "properties": {
           "easycoderunner.windows.terminal": {
             "type": "string",
@@ -400,7 +400,7 @@
         }
       },
       {
-        "title": "EasyCodeRunner: Linux",
+        "title": "Easy Code Runner: Linux",
         "properties": {
           "easycoderunner.linux.terminal": {
             "type": "string",
@@ -447,7 +447,7 @@
         }
       },
       {
-        "title": "EasyCodeRunner: BSD",
+        "title": "Easy Code Runner: BSD",
         "properties": {
           "easycoderunner.bsd.terminal": {
             "type": "string",
@@ -492,7 +492,7 @@
         }
       },
       {
-        "title": "EasyCodeRunner: macOS",
+        "title": "Easy Code Runner: macOS",
         "properties": {
           "easycoderunner.macos.terminal": {
             "type": "string",

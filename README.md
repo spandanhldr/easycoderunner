@@ -1,17 +1,17 @@
-# EasyCodeRunner
+# Easy Code Runner
 
-![EasyCodeRunner — your code, your terminal, one shortcut](resources/banner.png)
+![Easy Code Runner — your code, your terminal, one shortcut](resources/banner.png)
 
-[![Version](https://img.shields.io/badge/version-0.4.1-43d9c5?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.2-43d9c5?style=flat-square)](CHANGELOG.md)
 [![VS Code](https://img.shields.io/badge/VS_Code-1.85%2B-007ACC?style=flat-square)](https://code.visualstudio.com/)
 [![Runners](https://img.shields.io/badge/language_runners-64-9df07c?style=flat-square)](docs/LANGUAGES.md)
 [![Stars](https://img.shields.io/github/stars/spandanhldr/easycoderunner?style=flat-square)](https://github.com/spandanhldr/easycoderunner/stargazers)
 
 **Compile and run the active file in the external terminal you choose.**
 
-Press **F12**. EasyCodeRunner saves your file, selects its runner, and opens a separate console with the output ready to read. Choose your terminal, customize your shortcut, and edit each language's command directly in VS Code Settings.
+Press **F12**. Easy Code Runner saves your file, selects its runner, and opens a separate console with the output ready to read. Choose your terminal, customize your shortcut, and edit each language's command directly in VS Code Settings.
 
-[**Download the latest VSIX**](https://github.com/spandanhldr/easycoderunner/raw/refs/heads/main/releases/easycoderunner-0.4.1.vsix) · [Configuration](docs/CONFIGURATION.md) · [All languages](docs/LANGUAGES.md) · [Report an issue](https://github.com/spandanhldr/easycoderunner/issues/new/choose)
+[**Download the latest VSIX**](https://github.com/spandanhldr/easycoderunner/raw/refs/heads/main/releases/easycoderunner-0.4.2.vsix) · [Configuration](docs/CONFIGURATION.md) · [All languages](docs/LANGUAGES.md) · [Report an issue](https://github.com/spandanhldr/easycoderunner/issues/new/choose)
 
 ## Made for your workflow
 
@@ -26,18 +26,18 @@ Press **F12**. EasyCodeRunner saves your file, selects its runner, and opens a s
 
 ## Quick start
 
-1. [Download EasyCodeRunner 0.4.1](https://github.com/spandanhldr/easycoderunner/raw/refs/heads/main/releases/easycoderunner-0.4.1.vsix).
+1. [Download Easy Code Runner 0.4.2](https://github.com/spandanhldr/easycoderunner/raw/refs/heads/main/releases/easycoderunner-0.4.2.vsix).
 2. In VS Code, open **Extensions → … → Install from VSIX…** and select the file.
 3. Run **Developer: Reload Window** if prompted.
 4. Open a saved source file in a trusted workspace and press **F12**.
 
-Install the appropriate compiler or runtime first and make it available on `PATH`. EasyCodeRunner uses your installed tools; it does not bundle them. VS Code **1.85 or newer** is required.
+Install the appropriate compiler or runtime first and make it available on `PATH`. Easy Code Runner uses your installed tools; it does not bundle them. VS Code **1.85 or newer** is required.
 
-F12 takes precedence over Go to Definition while a saved editor has focus. Change it in **Settings → EasyCodeRunner → Run Key** if you prefer another shortcut.
+F12 takes precedence over Go to Definition while a saved editor has focus. Change it in **Settings → Easy Code Runner → Run Key** if you prefer another shortcut.
 
 ## Make every language yours
 
-Open Settings and search **EasyCodeRunner**. In the **Executors** section:
+Open Settings and search **Easy Code Runner**. In the **Executors** section:
 
 ```text
 Programming Language:  C++                         ▾
@@ -79,11 +79,11 @@ The registry covers every language ID and extension in Code Runner's default exe
 
 Windows execution has been verified with Python, JavaScript, C, C++, Java, Rust, Go, PowerShell, and Batch. **22 automated checks** cover mappings, path handling, compiler failures, shortcuts, and per-language configuration persistence.
 
-## Help shape EasyCodeRunner
+## Help shape Easy Code Runner
 
 Found a bug or want another terminal adapter? [Open an issue](https://github.com/spandanhldr/easycoderunner/issues/new/choose), or follow the [contribution guide](CONTRIBUTING.md) to send a change.
 
-If EasyCodeRunner makes your workflow easier, **star the repository** so other developers can find it.
+If Easy Code Runner makes your workflow easier, **star the repository** so other developers can find it.
 
 ---
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve EasyCodeRunner. Small fixes, terminal adapter tests, and clearer documentation are welcome.
+Thanks for helping improve Easy Code Runner. Small fixes, terminal adapter tests, and clearer documentation are welcome.
 
 ## Work locally
 
